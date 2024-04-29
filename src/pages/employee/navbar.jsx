@@ -18,9 +18,16 @@ import {
 } from "react-icons/md";
 import { VscRequestChanges } from "react-icons/vsc";
 
-import Logo from "../../assets/logos.png";
+import Logo from "../../assets/logo.svg";
+import homeIcon from "../../assets/home.svg";
+import groups from '../../assets/groups.svg'
+import bell from '../../assets/bell.svg'
+
+import activehomeIcon from "../../assets/activeHome.svg";
+
 
 const Navbar = () => {
+  const pathname = window.location.pathname
   const activeStyle = ({ isActive }) => {
     return {
       color: isActive ? "#E43625" : "black",
@@ -29,30 +36,50 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full flex items-center justify-between px-20 h-20 bg-white border-b">
-      <div className="w-[200px]">
-        <img src={Logo} />
-      </div>
+    <div className="w-full  fixed h-[80px] bg-white border-b flex justify-center z-[9]">
+      <div className="w-[90%] mx-auto flex items-center justify-between">
+        <div className=" w-[181px] h-[40px]">
+          <img src={Logo} className="object-cover h-full w-full" />
+        </div>
 
-      {/* Desktop Navigation Menu */}
-      <div className="flex items-center gap-4 font-mono">
-        <NavLink to="/employee" style={activeStyle}>
-          <div className="flex flex-col items-center justify-center mr-2">
-            <BiHomeAlt2 />
-            <span>Home</span>
+        {/* Desktop Navigation Menu */}
+        <div className="flex items-center gap-24 font-mono">
+          <NavLink to="/employee" style={activeStyle}>
+            <div className="flex flex-col items-center justify-center gap-1 ">
+              {/* <BiHomeAlt2 /> */}
+              <div>
+                <img src={pathname === '/employee' ? activehomeIcon : homeIcon} alt="icon" />
+              </div>
+              <p className={`${pathname === '/employee' ? '[#E43625]' : "text-[#666]"} text-[12px] font-medium hover:text-[#E43625] transition-all ease-in `}>Home</p>
+            </div>
+          </NavLink>
+          <NavLink to="/myCampaigns" style={activeStyle}>
+            <div className="flex flex-col items-center justify-center gap-1 ">
+              {/* <CiSaveDown2 />
+               */}
+              <div>
+                <img src={groups} alt="icon" />
+              </div>
+              <p className="text-[#666] text-[12px] font-medium hover:text-[#E43625] transition-all ease-in ">My Campaigns</p>
+            </div>
+          </NavLink>
+          <div>
+            <div className="flex flex-col items-center justify-center gap-1 ">
+              {/* <CiSaveDown2 />
+               */}
+              <div>
+                <img src={bell} alt="icon" />
+              </div>
+              <p className="text-[#666] text-[12px] font-medium hover:text-[#E43625] transition-all ease-in ">Notification</p>
+            </div>
           </div>
-        </NavLink>
-        <NavLink to="/myCampaigns" style={activeStyle}>
-          <div className="flex flex-col items-center justify-center mr-2">
-            <CiSaveDown2 />
-            <span>My Campaigns</span>
-          </div>
-        </NavLink>
-        {/* <div className="flex flex-col items-center justify-center mr-2">
+          {/* <div className="flex flex-col items-center justify-center mr-2">
           <IoMdNotificationsOutline />
           <span>Notifications</span>
         </div> */}
+        </div>
       </div>
+
     </div>
   );
 };
