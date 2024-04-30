@@ -12,6 +12,7 @@ import Details from "./pages/moderator/details";
 import Moderator from "./pages/moderator/landingPage";
 //import EmployeeLeaderboard from "./pages/employee/leaderboard"; // Import EmployeeLeaderboard component
 import EmployeeLeaderboard from "./pages/employee/EmployeeLeaderboard";
+import GroupsDetails from "./pages/employee/GroupDetails";
 function App() {
   return (
     <>
@@ -20,6 +21,8 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/employee" element={<Employee />} />
+        <Route path="/groups" element={<GroupsDetails />} />
+
         <Route path="/moderator" element={<Moderator />} />
         {/* <Route path="/details/:id" element={<Details />} /> */}
         <Route path="/details" element={<Details />} />

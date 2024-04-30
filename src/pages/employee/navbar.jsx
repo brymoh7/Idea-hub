@@ -22,11 +22,16 @@ import Logo from "../../assets/logo.svg";
 import homeIcon from "../../assets/home.svg";
 import groups from '../../assets/groups.svg'
 import bell from '../../assets/bell.svg'
+import activeBell from '../../assets/activeBell.svg'
+import activeGroup from '../../assets/avtiveGroup.svg'
+
 
 import activehomeIcon from "../../assets/activeHome.svg";
+import Notifications from "./Notifications";
+import Groups from "./Groups";
 
 
-const Navbar = () => {
+const Navbar = ({ setActiveTab, activeTab }) => {
   const pathname = window.location.pathname
   const activeStyle = ({ isActive }) => {
     return {
@@ -34,7 +39,16 @@ const Navbar = () => {
       // backgroundColor: isActive ? "#05A3A3" : "black",
     };
   };
+  const [showNotifications, setShowNotifications] = useState(false)
+  const [showGroups, setShowGroups] = useState(false)
 
+
+  const toggleNotifications = () => {
+    setShowNotifications(!showNotifications)
+  }
+  const toggleGroups = () => {
+    setShowGroups(!showGroups)
+  }
   return (
     <div className="w-full  fixed h-[80px] bg-white border-b flex justify-center z-[9]">
       <div className="w-[90%] mx-auto flex items-center justify-between">
@@ -44,33 +58,37 @@ const Navbar = () => {
 
         {/* Desktop Navigation Menu */}
         <div className="flex items-center gap-24 font-mono">
-          <NavLink to="/employee" style={activeStyle}>
+          <NavLink to="/employee" style={activeStyle}
+            onClick={() => {
+              setActiveTab('landing_page')
+            }}
+          >
             <div className="flex flex-col items-center justify-center gap-1 ">
               {/* <BiHomeAlt2 /> */}
               <div>
-                <img src={pathname === '/employee' ? activehomeIcon : homeIcon} alt="icon" />
+                <img src={pathname === '/employee' && activeTab === 'landing_page' && !showGroups && !showNotifications ? activehomeIcon : homeIcon} alt="icon" />
               </div>
-              <p className={`${pathname === '/employee' ? '[#E43625]' : "text-[#666]"} text-[12px] font-medium hover:text-[#E43625] transition-all ease-in `}>Home</p>
+              <p className={`${pathname === '/employee' && activeTab === 'landing_page' && !showGroups && !showNotifications ? '[#E43625]' : "text-[#666]"} text-[12px] font-medium hover:text-[#E43625] transition-all ease-in `}>Home</p>
             </div>
           </NavLink>
-          <NavLink to="/myCampaigns" style={activeStyle}>
+          <p className="cursor-pointer" onClick={toggleGroups}>
             <div className="flex flex-col items-center justify-center gap-1 ">
               {/* <CiSaveDown2 />
                */}
               <div>
-                <img src={groups} alt="icon" />
+                <img src={showGroups || pathname.includes('groups') ? activeGroup : groups} alt="icon" />
               </div>
-              <p className="text-[#666] text-[12px] font-medium hover:text-[#E43625] transition-all ease-in ">My Campaigns</p>
+              <p className={`${showGroups || pathname.includes('groups') ? 'text-[#E43625]' : 'text-[#666]'}  text-[12px] font-medium hover:text-[#E43625] transition-all ease-in `}>Groups</p>
             </div>
-          </NavLink>
+          </p>
           <div>
-            <div className="flex flex-col items-center justify-center gap-1 ">
+            <div className="flex flex-col items-center justify-center gap-1 cursor-pointer" onClick={toggleNotifications}>
               {/* <CiSaveDown2 />
                */}
               <div>
-                <img src={bell} alt="icon" />
+                <img src={showNotifications ? activeBell : bell} alt="icon" />
               </div>
-              <p className="text-[#666] text-[12px] font-medium hover:text-[#E43625] transition-all ease-in ">Notification</p>
+              <p className={`${showNotifications ? 'text-[#E43625]' : 'text-[#666]'} text-[12px] font-medium hover:text-[#E43625] transition-all ease-in `}>Notification</p>
             </div>
           </div>
           {/* <div className="flex flex-col items-center justify-center mr-2">
@@ -79,6 +97,9 @@ const Navbar = () => {
         </div> */}
         </div>
       </div>
+      {showNotifications && <Notifications toggleNotifications={toggleNotifications} />}
+      {showGroups && <Groups toggleGroups={toggleGroups} />}
+
 
     </div>
   );
