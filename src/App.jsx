@@ -14,6 +14,10 @@ import Moderator from "./pages/moderator/landingPage";
 import EmployeeLeaderboard from "./pages/employee/EmployeeLeaderboard";
 import GroupsDetails from "./pages/employee/GroupDetails";
 import ModeratorPosts from './pages/moderator/Posts'
+import ITSupportTeam from './pages/itSupportTeam/LandingPage'
+import ITSupportPost from './pages/itSupportTeam/Posts'
+import ManagementPost from './pages/management/Posts'
+import ManagementPostDetails from './pages/management/PostDetails'
 function App() {
   return (
     <>
@@ -27,10 +31,19 @@ function App() {
         <Route path="/moderator" element={<Moderator />} />
         <Route path="/moderator/posts" element={<ModeratorPosts />} />
 
+        <Route path='it-support-team' element={<ITSupportTeam />} />
+        <Route path='it-support-team/posts' element={<ITSupportPost />} />
+
+
+
         {/* <Route path="/details/:id" element={<Details />} /> */}
         <Route path="/details" element={<Details />} />
         <Route path="/myCampaigns" element={<MyCampaigns />} />
         <Route path="/management" element={<Management />} />
+        <Route path="/management/posts" element={<ManagementPost />} />
+        <Route path="/management/posts/:id" element={<ManagementPostDetails />} />
+
+
         <Route path="/employee-leaderboard" element={<EmployeeLeaderboard />} />
       </Routes>
     </>
