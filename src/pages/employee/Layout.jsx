@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Navbar from './navbar'
 import bolt from '../../assets/bolt.svg'
 import coin from '../../assets/coin.svg'
+import { NavLink } from 'react-router-dom';
 // import LandingPage from './landingPage'
 // import Posts from './Posts'
 
@@ -96,12 +97,13 @@ const Layout = ({ children, setActiveTab, activeTab }) => {
                   Logout
                 </button> */}
                             </div>
-                            <button
-                                className=" px-4 py-3 bg-primary text-white rounded w-full text-[14.17px] font-semibold"
+                            <NavLink
+                                to='/employee-leaderboard'
+                                className=" px-4 py-3 bg-primary text-white rounded w-full text-[14.17px] font-semibold text-center"
                                 onClick={() => navigate("/employee-leaderboard")}
                             >
                                 My Leaderboard
-                            </button>
+                            </NavLink>
                         </div>
                         <div className='col-span-9 flex flex-col'>
                             {children}
