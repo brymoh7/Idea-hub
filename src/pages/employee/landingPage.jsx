@@ -336,8 +336,25 @@ const Employee = () => {
                   <p className="text-[#676767] text-[12.9px] font-normal">Supported formats: JPG, PNG,</p>
                 </div>
                 <div className="border px-3 w-full mt-8 mb-5 rounded border-[#D2D2D2] py-3">
-                  <select className="border-none w-full text-[#666] opacity-[20%] focus:border-none outline-none" >
+                  <select className="border-none w-full text-[#666] placeholder:opacity-[20%] focus:border-primary outline-none" >
                     <option>Add category</option>
+                    <option>
+                      Road to 1,000,000 Customers
+                      • Description: Join us on our journey towards a milestone of 1,000,000 customers by year end 2024. Play an active part by suggesting innovative ideas on how we can achieve this ambitious goal.
+                      Together for Growth!</option>
+                    <option>Mission 1.4trn
+                      • Description: The bank is on a mission to achieve a target of 1.4 trillion in deposits. Together, let's suggest amazing ideas on how we can smash this goal.
+                      Together for Growth!
+                    </option>
+                    <option>What's New Premium?
+                      • Description: Explore our latest premium products and share your innovative ideas for enhancing their features. Your valuable suggestions will help us tailor our offerings.
+                      Together for Growth!</option>
+                    <option>
+                      Our Everyday Product Champions
+                      • Description: Contribute your ideas and suggestions for enhancing the features of existing products. Become a champion of our everyday products by sharing your insights to make them even more valuable to our customers.
+                      Together for Growth!
+                    </option>
+
                   </select>
                 </div>
                 <div className="flex border px-3 w-full mb-5 rounded border-[#D2D2D2] py-3 gap-3">
