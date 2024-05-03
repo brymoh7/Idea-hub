@@ -21,9 +21,21 @@ import edit from '../../assets/Edit.svg'
 import Layout from "./Layout";
 import Posts from "./Posts";
 import Votes from "./Votes";
+import { useDropzone } from 'react-dropzone';
 
 
 const Employee = () => {
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+
+  const { getRootProps, getInputProps, isDragActive, acceptedFiles } = useDropzone({
+    accept: 'image/*',
+    onDrop: (acceptedFiles) => {
+      setUploadedFiles(acceptedFiles);
+    },
+  });
+
+  
+
   const navigate = useNavigate();
   const apiURL = import.meta.env.VITE_REACT_APP_GET_IDEA_HUB_EMPLOYEE;
   const user = JSON.parse(localStorage.getItem("userInfo"));
@@ -197,6 +209,8 @@ const Employee = () => {
 
   const handleLogout = () => {
     navigate("/");
+
+
   };
 
   return (
@@ -328,11 +342,21 @@ const Employee = () => {
                 >
                   Upload your photo
                 </label>
-                <div className="h-[160.74px] rounded bg-[#F0F2F5] flex flex-col items-center justify-center mt-[13.17px] gap-3">
+
+                <div className="h-[160.74px] rounded bg-[#F0F2F5] flex flex-col items-center border justify-center mt-[13.17px] gap-3 cursor-pointer hover:border-primary hover:border-dashed" {...getRootProps()}>
                   <div>
                     <img src={upload} alt='icon' />
                   </div>
-                  <p className="text-[#333] font-bold text-[17.2px]">Drag & drop files or <span className="text-primary underline">Browse</span></p>
+                  {isDragActive ? (
+                <p className="dropzone-content mb-0">Release to drop the files here</p>
+              ) : (
+                <p className="text-[#333] font-bold text-[17.2px]">Drag & drop files or <span className="text-primary underline">Browse</span></p>
+               
+              )}
+                  {uploadedFiles.map((file) => (
+                    <li key={file.name}>{file.name}</li>
+                  ))}
+                  <input {...getInputProps()} type='file' accept=".png, .jpg, .jpeg"  />
                   <p className="text-[#676767] text-[12.9px] font-normal">Supported formats: JPG, PNG,</p>
                 </div>
                 <div className="border px-3 w-full mt-8 mb-5 rounded border-[#D2D2D2] py-3">
