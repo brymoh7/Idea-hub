@@ -86,7 +86,7 @@ const LandingPage = () => {
               Your ideas are the missing link between where we are now and where we want to be.
             </p>
             <div
-              className="w-[170px] h-[50px] border border-white rounded-lg flex items-center justify-center cursor-pointer"
+              className="w-[170px] h-[50px] border hover:bg-white hover:text-black transition-all ease-in-out duration-300 border-white rounded-lg flex items-center justify-center cursor-pointer"
               onClick={() => navigate("/signin")}
             >
               Start Writing
